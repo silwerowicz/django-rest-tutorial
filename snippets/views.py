@@ -20,7 +20,7 @@ def snippet_list(request, format=None):
         serializer = SnippetSerializer(snippets, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = SnippetSerializer(data=data)
+        serializer = SnippetSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
